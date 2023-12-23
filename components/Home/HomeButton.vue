@@ -6,14 +6,15 @@ defineProps<{
 </script>
 
 <template>
-  <button
+  <NuxtLink
+    to="/room/join"
     :class="`
-      py-2 rounded font-bold
+      py-2 rounded-md font-bold text-center
       ${ btnType ? `btn-${btnType}` : 'btn-primary' }
     `"
   >
     {{ title }}
-  </button>
+  </NuxtLink>
 </template>
 
 <style scoped>
@@ -22,6 +23,6 @@ defineProps<{
 }
 
 .btn-secondary {
-  @apply bg-white text-gray-600 border border-gray-600;
+  @apply bg-white text-blue-500 border border-blue-500;
 }
 </style>
