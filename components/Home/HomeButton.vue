@@ -1,15 +1,23 @@
 <script lang="ts" setup>
-defineProps<{
+import { computed } from 'vue'
+
+const props = defineProps<{
   title: string
   btnType?: string
+  isHost?: boolean
 }>()
+
+const generateRoute = computed(() => {
+  const isHostMeeting = props.isHost ? '?host=true': ''
+  return `/room/join${isHostMeeting}`
+})
 </script>
 
 <template>
   <NuxtLink
-    to="/room/join"
+    :to="generateRoute"
     :class="`
-      py-2 rounded-md font-bold text-center
+      py-2 rounded-md font-bold text-center hover:brightness-105
       ${ btnType ? `btn-${btnType}` : 'btn-primary' }
     `"
   >

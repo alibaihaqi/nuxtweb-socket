@@ -14,6 +14,7 @@
         />
 
         <HomeButton
+          :isHost="true"
           title="Host a Meeting"
           btnType="secondary"
         />
