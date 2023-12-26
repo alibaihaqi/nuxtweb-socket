@@ -18,6 +18,7 @@ const generateRoute = computed(() => {
     :to="generateRoute"
     :class="`
       py-2 rounded-md font-bold text-center hover:brightness-105
+      hover:shadow-md
       ${ btnType ? `btn-${btnType}` : 'btn-primary' }
     `"
   >
