@@ -1,5 +1,11 @@
 <template>
-  <div class="min-h-screen flex justify-center items-center">
-    <h1>Hello Room Index</h1>
+  <div class="h-screen flex flex-col">
+    <RoomContent />
+    <RoomFooter />
   </div>
 </template>
+
+<script lang="ts" setup>
+import RoomContent from '@/components/Room/Content.vue'
+import RoomFooter from '@/components/Room/Footer.vue'
+</script>
