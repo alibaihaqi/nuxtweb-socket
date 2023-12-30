@@ -1,7 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+  },
+  
+  image: {
+    domains: [
+      'avatars0.githubusercontent.com'
+    ],
+  },
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
   ],
 })
