@@ -1,0 +1,70 @@
+<template>
+  <div class="flex justify-end">
+    <div class="flex gap-4">
+      <button
+        :class="`
+          px-4 py-1 border border-gray-700 rounded-md
+          text-gray-700 text-sm hover:brightness-105
+          hover:shadow-md
+        `"
+        @click="router.back()"
+      >
+        Cancel
+      </button>
+      
+      <button
+        :class="`
+          px-4 py-1 rounded-md bg-blue-500 disabled:bg-gray-500
+          text-white disabled:text-gray-100 text-sm
+          hover:brightness-105 hover:shadow-md
+        `"
+        :disabled="isButtonDisabled"
+        @click="onSubmitButtonHandler"
+      >
+        {{ isHostMeeting ? 'Host' : 'Join' }}
+      </button>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { useRoomStore } from '@/stores/room';
+import { connectSocketIoServer } from '@/utils/socket'
+
+const props = defineProps<{
+  isButtonDisabled: boolean
+  isHostMeeting: boolean
+}>()
+
+const meetingConfig = useMeetingConfig()
+const meetingStore = useRoomStore()
+
+const router = useRouter();
+const appConfig = useAppConfig()
+const SOCKET_SERVER = appConfig.SOCKET_SERVER
+
+onMounted(() => {
+  connectSocketIoServer(SOCKET_SERVER as string)
+})
+
+const onSubmitButtonHandler = async () => {
+  try {
+    await getLocalPreviewAndRoomConnection({
+      ...meetingConfig.value,
+      isHostMeeting: props.isHostMeeting,
+    })
+
+    meetingStore.setMeetingConfig({
+      isHostMeeting: props.isHostMeeting,
+      meetingName: meetingConfig.value.meetingName
+    })
+
+    meetingConfig.value.meetingId = ''
+    meetingConfig.value.meetingName = ''
+  
+    await router.replace('/room')  
+  } catch (error) {
+    console.log('onSubmitButtonHandler error:', error)
+  }
+}
+</script>
