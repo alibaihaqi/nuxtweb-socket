@@ -5,9 +5,14 @@ const props = defineProps<{
   title: string
   btnType?: string
   isHost?: boolean
+  route?: string
 }>()
 
 const generateRoute = computed(() => {
+  if (props.route === 'room') {
+    return '/room'
+  }
+
   const isHostMeeting = props.isHost ? '?host=true': ''
   return `/room/join${isHostMeeting}`
 })
