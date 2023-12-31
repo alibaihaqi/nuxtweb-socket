@@ -12,6 +12,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.10.1",
+    "@types/simple-peer": "^9.11.8",
     "nuxt": "^3.8.2",
     "vue": "^3.3.12",
     "vue-router": "^4.2.5"
@@ -19,6 +20,7 @@
   "dependencies": {
     "@nuxt/image": "^1.1.0",
     "@pinia/nuxt": "^0.5.1",
+    "simple-peer": "^9.11.1",
     "socket.io-client": "^4.7.2"
   }
 }
