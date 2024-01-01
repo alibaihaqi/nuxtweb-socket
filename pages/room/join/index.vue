@@ -73,9 +73,13 @@ import { computed } from 'vue'
 
 import ActionButton from '@/components/JoinRoom/Button.vue'
 import CommonLayout from '@/components/Layout/CommonLayout.vue'
+import { connectSocketIoServer } from '@/utils/socket'
 
-const route = useRoute()
+const runtimeConfig = useRuntimeConfig()
+const SOCKET_SERVER = runtimeConfig.public.socketServer
+
 const meetingConfig = useMeetingConfig()
+const route = useRoute()
 
 const isHostMeeting = computed(() => route.query?.host === 'true')
 
@@ -85,6 +89,10 @@ const generateTitle = computed(() => {
 
 const isButtonDisabled = computed(() => {
   return !isHostMeeting.value && !meetingConfig.value?.meetingId
+})
+
+onMounted(() => {
+  connectSocketIoServer(SOCKET_SERVER as string)
 })
 </script>
 

@@ -29,7 +29,6 @@
 
 <script lang="ts" setup>
 import { useRoomStore } from '@/stores/room';
-import { connectSocketIoServer } from '@/utils/socket'
 
 const props = defineProps<{
   isButtonDisabled: boolean
@@ -40,12 +39,6 @@ const meetingConfig = useMeetingConfig()
 const meetingStore = useRoomStore()
 
 const router = useRouter();
-const appConfig = useAppConfig()
-const SOCKET_SERVER = appConfig.SOCKET_SERVER
-
-onMounted(() => {
-  connectSocketIoServer(SOCKET_SERVER as string)
-})
 
 const onSubmitButtonHandler = async () => {
   try {
