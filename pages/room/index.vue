@@ -1,8 +1,8 @@
 <template>
-  <div class="h-screen flex flex-col">
+  <main class="h-screen flex flex-col">
     <RoomContent />
     <RoomFooter />
-  </div>
+  </main>
 </template>
 
 <script lang="ts" setup>
