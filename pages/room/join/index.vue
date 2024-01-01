@@ -20,7 +20,7 @@
           </p>
 
           <input
-          v-model="meetingId"
+            v-model="meetingConfig.meetingId"
             class="border border-blue-500 px-4 py-2 rounded-md"
             placeholder="Enter meeting ID"
             type="text"
@@ -33,7 +33,7 @@
           </p>
 
           <input
-            v-model="meetingName"
+            v-model="meetingConfig.meetingName"
             class="border border-blue-500 px-4 py-2 rounded-md"
             placeholder="Enter your name"
             type="text"
@@ -43,7 +43,7 @@
 
       <div class="flex items-center">
         <input
-          v-model="audioToConnect"
+          v-model="meetingConfig.audioToConnect"
           id="audio-checkbox"
           :class="`
             w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
@@ -60,54 +60,31 @@
         </label>
       </div>
 
-      <div class="flex justify-end">
-        <div class="flex gap-4">
-          <button
-            :class="`
-              px-4 py-1 border border-gray-700 rounded-md
-              text-gray-700 text-sm hover:brightness-105
-              hover:shadow-md
-            `"
-            @click="router.back()"
-          >
-            Cancel
-          </button>
-          
-          <button
-            :class="`
-              px-4 py-1 rounded-md bg-blue-500 disabled:bg-gray-500
-              text-white disabled:text-gray-100 text-sm
-              hover:brightness-105 hover:shadow-md
-            `"
-            :disabled="isButtonDisabled"
-          >
-            {{ isHostMeeting ? 'Host' : 'Join' }}
-          </button>
-        </div>
-      </div>
+      <ActionButton
+        :isButtonDisabled="isButtonDisabled"
+        :isHostMeeting="isHostMeeting"
+      />
     </section>
   </CommonLayout>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+
+import ActionButton from '@/components/JoinRoom/Button.vue'
 import CommonLayout from '@/components/Layout/CommonLayout.vue'
 
 const route = useRoute()
-const router = useRouter()
-const audioToConnect = useAudioToConnect()
-const meetingId = useMeetingId()
-const meetingName = useMeetingName()
+const meetingConfig = useMeetingConfig()
 
 const isHostMeeting = computed(() => route.query?.host === 'true')
 
 const generateTitle = computed(() => {
-  return isHostMeeting ? 'Host Meeting' : 'Join Meeting'
+  return isHostMeeting.value ? 'Host Meeting' : 'Join Meeting'
 })
 
 const isButtonDisabled = computed(() => {
-  return !isHostMeeting.value && !meetingId.value
+  return !isHostMeeting.value && !meetingConfig.value?.meetingId
 })
-
 </script>
 
