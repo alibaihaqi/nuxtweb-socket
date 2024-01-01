@@ -1,7 +1,7 @@
 // @ts-ignore
 import Peer from 'simple-peer/simplepeer.min.js'
 import type { SimplePeer } from 'simple-peer'
-import type { IMeetingConfig } from '@/interfaces/room/room-state'
+import type { IMeetingConfig } from '@/interfaces/room/room'
 import { createNewRoom, joinRoom, signalPeerData } from '@/utils/socket'
 
 const defaultMediaConstraints = {

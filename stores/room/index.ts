@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { IRoomState, ISetMeetingConfig } from '@/interfaces/room/room-state'
+import type { IRoomState, ISetMeetingConfig } from '@/interfaces/room/room'
 import { micToggle, videoToggle } from '@/utils/rtc-handler'
 
 export const useRoomStore = defineStore('room', {

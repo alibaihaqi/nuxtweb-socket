@@ -41,7 +41,7 @@ import {
   VIDEO_ICON_SETS,
 } from '@/constants/room/icon'
 
-import type { TActionButton } from '@/interfaces/room/room-state'
+import type { TActionButton } from '@/interfaces/room/room'
 import { useRoomStore } from '@/stores/room'
 import { disconnectSocketIoServer } from '@/utils/socket'
 

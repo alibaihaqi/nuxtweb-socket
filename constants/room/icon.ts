@@ -1,4 +1,4 @@
-import type { IRoomActionButton } from '@/interfaces/room/room-state'
+import type { IRoomActionButton } from '@/interfaces/room/room'
 
 export const MICROPHONE_ICON_SETS: IRoomActionButton[] = [
   {

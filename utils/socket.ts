@@ -1,5 +1,5 @@
 import io, { Socket } from 'socket.io-client'
-import type { IMeetingConfig } from '@/interfaces/room/room-state'
+import type { IMeetingConfig } from '@/interfaces/room/room'
 import { useRoomStore } from '@/stores/room'
 import {
   handleSignalingData,

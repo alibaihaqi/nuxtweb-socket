@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IRoomActionButton } from '@/interfaces/room/room-state'
+import type { IRoomActionButton } from '@/interfaces/room/room'
 
 const props = defineProps<{
   isActive: boolean
