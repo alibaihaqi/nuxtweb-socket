@@ -27,5 +27,7 @@ const initiateRoom = async () => {
   })
 
   meetingStore.setIsInitiateRoom(false)
+  meetingStore.setMicrophone()
+  meetingStore.setVideo()
 }
 </script>
