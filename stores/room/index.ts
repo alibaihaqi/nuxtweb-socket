@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { IRoomState, ISetMeetingConfig } from '@/interfaces/room/room-state'
+import { micToggle, videoToggle } from '@/utils/rtc-handler'
 
 export const useRoomStore = defineStore('room', {
   state: (): IRoomState => ({
@@ -7,6 +8,7 @@ export const useRoomStore = defineStore('room', {
     meetingName: '',
     meetingUsers: [],
     isHostMeeting: false,
+    isInitiateRoom: false,
     isMicrophoneActive: false,
     isShowParticipants: false,
     isVideoActive: false,
@@ -23,12 +25,16 @@ export const useRoomStore = defineStore('room', {
     setIsHostMeeting(value: boolean) {
       this.isHostMeeting = value
     },
+    setIsInitiateRoom(value: boolean) {
+      this.isInitiateRoom = value
+    },
     setIsShowParticipants () {
       this.isShowParticipants = !this.isShowParticipants
     },
-    setMeetingConfig({ isHostMeeting, meetingName }: ISetMeetingConfig) {
+    setMeetingConfig({ isHostMeeting, meetingName, meetingId }: ISetMeetingConfig) {
       this.setIsHostMeeting(isHostMeeting)
       this.setMeetingName(meetingName)
+      this.setRoomId(meetingId as string)
     },
     setMeetingName(value: string) {
       this.meetingName = value
@@ -38,12 +44,16 @@ export const useRoomStore = defineStore('room', {
     },
     setMicrophone() {
       this.isMicrophoneActive = !this.isMicrophoneActive
+
+      micToggle(this.isMicrophoneActive)
     },
     setRoomId(value: string) {
       this.roomId = value
     },
     setVideo () {
       this.isVideoActive = !this.isVideoActive
+
+      videoToggle(this.isVideoActive)
     },
   },
 })
