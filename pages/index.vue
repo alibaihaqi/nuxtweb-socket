@@ -10,16 +10,26 @@
       </h1>
 
       <div class="flex flex-col gap-4 w-full">
-        <HomeButton
-          title="Join a Meeting"
-          btnType="primary"
-        />
+        <template v-if="!roomStore.roomId">
+          <HomeButton
+            title="Join a Meeting"
+            btnType="primary"
+          />
+  
+          <HomeButton
+            :isHost="true"
+            title="Host a Meeting"
+            btnType="secondary"
+          />
+        </template>
 
-        <HomeButton
-          :isHost="true"
-          title="Host a Meeting"
-          btnType="secondary"
-        />
+        <template v-else>
+          <HomeButton
+            route="room"
+            title="Go to Meeting Room"
+            btnType="primary"
+          />
+        </template>
       </div>
     </section>
   </CommonLayout>
@@ -28,5 +38,8 @@
 <script lang="ts" setup>
 import HomeButton from '@/components/Home/HomeButton.vue'
 import CommonLayout from '@/components/Layout/CommonLayout.vue'
+import { useRoomStore } from '@/stores/room'
+
+const roomStore = useRoomStore()
 </script>
 
