@@ -49,14 +49,10 @@ onMounted(() => {
 
 const onSubmitButtonHandler = async () => {
   try {
-    await getLocalPreviewAndRoomConnection({
-      ...meetingConfig.value,
-      isHostMeeting: props.isHostMeeting,
-    })
-
     meetingStore.setMeetingConfig({
       isHostMeeting: props.isHostMeeting,
-      meetingName: meetingConfig.value.meetingName
+      meetingName: meetingConfig.value.meetingName,
+      meetingId: meetingConfig.value.meetingId,
     })
 
     meetingConfig.value.meetingId = ''
@@ -64,7 +60,7 @@ const onSubmitButtonHandler = async () => {
   
     await router.replace('/room')  
   } catch (error) {
-    console.log('onSubmitButtonHandler error:', error)
+    console.log('route error:', error)
   }
 }
 </script>
