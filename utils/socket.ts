@@ -1,7 +1,11 @@
 import io, { Socket } from 'socket.io-client'
 import type { IMeetingConfig } from '@/interfaces/room/room-state'
 import { useRoomStore } from '@/stores/room'
-import { handleSignalingData, prepareNewPeerConnection } from '@/utils/rtc-handler'
+import {
+  handleSignalingData,
+  prepareNewPeerConnection,
+  removePeerConnection,
+} from '@/utils/rtc-handler'
 
 let socket: Socket | null = null
 
@@ -33,6 +37,10 @@ export const connectSocketIoServer = (socketServer: string) => {
 
   socket?.volatile.on('connection-init', (data: any) => {
     prepareNewPeerConnection(data.connectedUserSocketId, true)
+  })
+
+  socket?.volatile.on('user-disconnected', (data: any) => {
+    removePeerConnection(data)
   })
 }
 
