@@ -14,10 +14,16 @@
       />
     </section>
 
-    <section>
+    <section class="flex">
       <ActionButton
+        class="hidden sm:inline-flex"
         :isActive="roomStore.isShowParticipants"
         :sources="PARTICIPANTS_ICON_SETS"
+        @onClickHandler="onClickHandler('setIsShowParticipants')"
+      />
+      <ActionButton
+        :isActive="roomStore.isShareScreenActive"
+        :sources="SHARE_SCREEN_ICON_SETS"
         @onClickHandler="onClickHandler('setIsShowParticipants')"
       />
     </section>
@@ -38,6 +44,7 @@ import ActionButton from '@/components/Room/ActionButton.vue'
 import {
   MICROPHONE_ICON_SETS,
   PARTICIPANTS_ICON_SETS,
+  SHARE_SCREEN_ICON_SETS,
   VIDEO_ICON_SETS,
 } from '@/constants/room/icon'
 
