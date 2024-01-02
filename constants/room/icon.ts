@@ -38,3 +38,16 @@ export const PARTICIPANTS_ICON_SETS: IRoomActionButton[] = [
     iconPath: '/icons/people.svg',
   }
 ]
+
+export const SHARE_SCREEN_ICON_SETS: IRoomActionButton[] = [
+  {
+    isActive: false,
+    title: 'Share',
+    iconPath: '/icons/share.svg',
+  },
+  {
+    isActive: true,
+    title: 'Share',
+    iconPath: '/icons/share.svg',
+  }
+]
