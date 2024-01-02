@@ -40,6 +40,7 @@ export interface IRoomState {
   isHostMeeting: boolean;
   isInitiateRoom: boolean;
   isMicrophoneActive: boolean;
+  isShareScreenActive: boolean;
   isShowParticipants: boolean;
   isVideoActive: boolean;
 }
