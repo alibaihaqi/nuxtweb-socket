@@ -26,6 +26,11 @@
         :sources="SHARE_SCREEN_ICON_SETS"
         @onClickHandler="onClickHandler('setIsShowParticipants')"
       />
+      <ActionButton
+        :isActive="roomStore.isShowChatRoom"
+        :sources="CHAT_ICON_SETS"
+        @onClickHandler="onClickHandler('setIsShowChatRoom')"
+      />
     </section>
 
     <section class="px-2">
@@ -42,6 +47,7 @@
 <script lang="ts" setup>
 import ActionButton from '@/components/Room/ActionButton.vue'
 import {
+  CHAT_ICON_SETS,
   MICROPHONE_ICON_SETS,
   PARTICIPANTS_ICON_SETS,
   SHARE_SCREEN_ICON_SETS,
