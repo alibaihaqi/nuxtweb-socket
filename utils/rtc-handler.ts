@@ -6,7 +6,7 @@ import { createNewRoom, joinRoom, signalPeerData } from '@/utils/socket'
 
 const defaultMediaConstraints = {
   audio: true,
-  video: { width: 1280, height: 720 },
+  video: { width: 480, height: 360 },
 }
 
 let localStream: null | MediaStream = null
@@ -126,3 +126,34 @@ export const videoToggle = (value: boolean) => {
 
   localStream.getVideoTracks()[0].enabled = value
 }
+
+export const screenShareToogle = (
+  isScreenSharingActive: boolean,
+  screenSharingStream: MediaStream | null = null,
+) => {
+  if (isScreenSharingActive) {
+    switchVideoTracks(localStream);
+  } else {
+    switchVideoTracks(screenSharingStream);
+  }
+};
+
+const switchVideoTracks = (stream: MediaStream | null) => {
+  for (let socket_id in peers) {
+    for (let peerIdTrack in peers[socket_id].streams[0].getTracks()) {
+      for (let track in stream?.getTracks() as MediaStreamTrack[]) {
+        if (
+          peers[socket_id].streams[0].getTracks()[peerIdTrack].kind ===
+          stream?.getTracks()[track].kind
+        ) {
+          peers[socket_id].replaceTrack(
+            peers[socket_id].streams[0].getTracks()[peerIdTrack],
+            stream?.getTracks()[track],
+            peers[socket_id].streams[0]
+          );
+          break;
+        }
+      }
+    }
+  }
+};
