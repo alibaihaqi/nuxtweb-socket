@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden sm:inline-flex sm:w-52 md:w-80 flex flex-col bg-gray-700">
+  <div class="hidden sm:inline-flex sm:w-52 md:w-80 flex flex-col flex-1 bg-gray-700">
     <section class="flex items-center py-2 px-4">
       <p class="flex-1 text-gray-100 text-sm text-center">
         Participants ({{ roomStore.meetingUsers.length }})
@@ -19,7 +19,9 @@
         :key="participant.userId"
         class="px-2 py-2 border-b border-white hover:bg-gray-600"
       >
-        <p class="text-sm">{{ participant.name }}</p>
+        <p class="text-sm">
+          {{ participant?.name }}
+        </p>
       </div>
     </section>
   </div>
