@@ -11,6 +11,7 @@ export const useRoomStore = defineStore('room', {
     isInitiateRoom: false,
     isMicrophoneActive: false,
     isShareScreenActive: false,
+    isShowChatRoom: false,
     isShowParticipants: false,
     isVideoActive: false,
   }),
@@ -31,6 +32,9 @@ export const useRoomStore = defineStore('room', {
     },
     setIsShareScreen() {
       this.isShareScreenActive = !this.isShareScreenActive
+    },
+    setIsShowChatRoom() {
+      this.isShowChatRoom = !this.isShowChatRoom
     },
     setIsShowParticipants () {
       this.isShowParticipants = !this.isShowParticipants

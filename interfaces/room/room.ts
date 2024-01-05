@@ -22,7 +22,7 @@ export interface IRoomActionButton {
   iconPath: string
 }
 
-export type TActionButton = 'setMicrophone' | 'setVideo' | 'setIsShowParticipants'
+export type TActionButton = 'setMicrophone' | 'setVideo' | 'setIsShowParticipants' | 'setIsShowChatRoom'
 
 export interface IUser {
   userId?: string;
@@ -40,6 +40,7 @@ export interface IRoomState {
   isHostMeeting: boolean;
   isInitiateRoom: boolean;
   isMicrophoneActive: boolean;
+  isShowChatRoom: boolean;
   isShareScreenActive: boolean;
   isShowParticipants: boolean;
   isVideoActive: boolean;
