@@ -8,12 +8,17 @@
       <section id="videos_container" class="flex-1" />
     </section>
 
-    <Participants v-if="roomStore.isShowParticipants" />
+    <section class="flex flex-col">
+      <Participants v-if="roomStore.isShowParticipants" />
+      <ChatRoom v-if="roomStore.isShowChatRoom" />
+    </section>
   </div>
 </template>
 
 <script lang="ts" setup>
+import ChatRoom from '@/components/Room/ChatRoom.vue'
 import Participants from '@/components/Room/Participants.vue'
+
 import { useRoomStore } from '@/stores/room';
 
 const roomStore = useRoomStore()
