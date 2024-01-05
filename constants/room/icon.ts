@@ -51,3 +51,16 @@ export const SHARE_SCREEN_ICON_SETS: IRoomActionButton[] = [
     iconPath: '/icons/share.svg',
   }
 ]
+
+export const CHAT_ICON_SETS: IRoomActionButton[] = [
+  {
+    isActive: false,
+    title: 'Chat',
+    iconPath: '/icons/chat.svg',
+  },
+  {
+    isActive: true,
+    title: 'Chat',
+    iconPath: '/icons/chat.svg',
+  }
+]
