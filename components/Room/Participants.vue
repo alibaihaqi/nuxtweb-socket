@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoomStore } from '@/stores/room';
+import { useRoomStore } from '@/stores/room'
 
 const roomStore = useRoomStore()
 </script>
