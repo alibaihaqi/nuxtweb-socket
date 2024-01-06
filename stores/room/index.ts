@@ -1,12 +1,18 @@
 import { defineStore } from 'pinia'
 import type { IRoomState, ISetMeetingConfig } from '@/interfaces/room/room'
-import { micToggle, videoToggle } from '@/utils/rtc-handler'
+import {
+  getDisplayMediaStream,
+  micToggle,
+  screenShareToogle,
+  videoToggle,
+} from '@/utils/rtc-handler'
 
 export const useRoomStore = defineStore('room', {
   state: (): IRoomState => ({
-    roomId: '',
+    displayStream: null,
     meetingName: '',
     meetingUsers: [],
+    roomId: '',
     isHostMeeting: false,
     isInitiateRoom: false,
     isMicrophoneActive: false,
@@ -30,8 +36,26 @@ export const useRoomStore = defineStore('room', {
     setIsInitiateRoom(value: boolean) {
       this.isInitiateRoom = value
     },
-    setIsShareScreen() {
-      this.isShareScreenActive = !this.isShareScreenActive
+    async setShareScreen() {
+      if (!this.isShareScreenActive) {
+        const displayMediaStream = await getDisplayMediaStream()
+        if (displayMediaStream.success) {
+          this.displayStream = displayMediaStream.stream as MediaStream
+    
+          this.displayStream.getVideoTracks()[0].onended = () => {
+            this.setShareScreen()
+          }
+          screenShareToogle(this.isShareScreenActive, this.displayStream)
+          this.isShareScreenActive = true
+        }
+      } else {
+        screenShareToogle(this.isShareScreenActive)
+        this.isShareScreenActive = false
+    
+        // stop screen share stream
+        this.displayStream?.getTracks().forEach((t) => t.stop())
+        this.displayStream = null
+      }
     },
     setIsShowChatRoom() {
       this.isShowChatRoom = !this.isShowChatRoom

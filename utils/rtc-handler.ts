@@ -1,8 +1,13 @@
 // @ts-ignore
 import Peer from 'simple-peer/simplepeer.min.js'
 import type { SimplePeer } from 'simple-peer'
-import type { IMeetingConfig } from '@/interfaces/room/room'
+import type { IGetDisplayMedia, IMeetingConfig } from '@/interfaces/room/room'
 import { createNewRoom, joinRoom, signalPeerData } from '@/utils/socket'
+
+const defaultDisplayMediaConstraints = {
+  audio: false,
+  video: true,
+}
 
 const defaultMediaConstraints = {
   audio: true,
@@ -125,6 +130,26 @@ export const videoToggle = (value: boolean) => {
   if (!localStream) return
 
   localStream.getVideoTracks()[0].enabled = value
+}
+
+export const getDisplayMediaStream = async (): Promise<IGetDisplayMedia> => {
+  let stream = null;
+  try {
+    stream = await navigator.mediaDevices.getDisplayMedia(defaultDisplayMediaConstraints);
+
+    return {
+      success: true,
+      stream
+    }
+  } catch (err) {
+    const message = `Error occurred when get an access to screen share: ${err}`
+    console.log(message);
+
+    return {
+      success: false,
+      errorMessage: message,
+    }
+  }
 }
 
 export const screenShareToogle = (
