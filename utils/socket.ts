@@ -4,6 +4,7 @@ import { useRoomStore } from '@/stores/room'
 import {
   handleSignalingData,
   prepareNewPeerConnection,
+  removeLocalStream,
   removePeerConnection,
 } from '@/utils/rtc-handler'
 
@@ -45,6 +46,7 @@ export const connectSocketIoServer = (socketServer: string) => {
 }
 
 export const disconnectSocketIoServer = () => {
+  removeLocalStream()
   socket?.volatile.disconnect()
 }
 

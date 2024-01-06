@@ -20,7 +20,7 @@ let streams: any = []
 export const getLocalPreviewAndRoomConnection = async (config: IMeetingConfig) => {
   try {
     localStream = await navigator.mediaDevices.getUserMedia(defaultMediaConstraints)
-    
+
     showVideoStream(localStream)
 
     config.isHostMeeting
@@ -29,6 +29,12 @@ export const getLocalPreviewAndRoomConnection = async (config: IMeetingConfig) =
   } catch (error) {
     console.log(error)
   }
+}
+
+export const removeLocalStream = () => {
+  localStream?.getAudioTracks()[0].stop()
+  localStream?.getVideoTracks()[0].stop()
+  localStream = null
 }
 
 export const showVideoStream = (stream: MediaStream, connectedUserSocketId: string = '') => {
