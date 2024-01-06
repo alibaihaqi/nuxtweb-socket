@@ -24,7 +24,7 @@
       <ActionButton
         :isActive="roomStore.isShareScreenActive"
         :sources="SHARE_SCREEN_ICON_SETS"
-        @onClickHandler="onClickHandler('setIsShowParticipants')"
+        @onClickHandler="onClickHandler('setShareScreen')"
       />
       <ActionButton
         :isActive="roomStore.isShowChatRoom"
