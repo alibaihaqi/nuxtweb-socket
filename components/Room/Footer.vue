@@ -27,6 +27,7 @@
         @onClickHandler="onClickHandler('setShareScreen')"
       />
       <ActionButton
+        class="hidden sm:inline-flex"
         :isActive="roomStore.isShowChatRoom"
         :sources="CHAT_ICON_SETS"
         @onClickHandler="onClickHandler('setIsShowChatRoom')"
