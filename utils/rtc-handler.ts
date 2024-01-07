@@ -11,17 +11,17 @@ const defaultDisplayMediaConstraints = {
 
 const defaultMediaConstraints = {
   audio: true,
-  video: { width: 480, height: 360 },
+  video: true,
 }
 
 let localStream: null | MediaStream = null
 let streams: any = []
 
-export const getLocalPreviewAndRoomConnection = async (config: IMeetingConfig) => {
+export const getLocalPreviewAndRoomConnection = async (config: IMeetingConfig, socketId: string) => {
   try {
     localStream = await navigator.mediaDevices.getUserMedia(defaultMediaConstraints)
 
-    showVideoStream(localStream)
+    showVideoStream(localStream, socketId)
 
     config.isHostMeeting
       ? createNewRoom(config)
