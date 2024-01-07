@@ -38,6 +38,7 @@ export interface IRoomState {
   meetingName: string;
   meetingUsers: IUser[];
   roomId: string;
+  socketId: string;
   isHostMeeting: boolean;
   isInitiateRoom: boolean;
   isMicrophoneActive: boolean;

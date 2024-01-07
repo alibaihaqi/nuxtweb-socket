@@ -13,6 +13,7 @@ export const useRoomStore = defineStore('room', {
     meetingName: '',
     meetingUsers: [],
     roomId: '',
+    socketId: '',
     isHostMeeting: false,
     isInitiateRoom: false,
     isMicrophoneActive: false,
@@ -23,11 +24,17 @@ export const useRoomStore = defineStore('room', {
   }),
   actions: {
     resetToDefaultState() {
-      this.roomId = ''
+      this.displayStream = null
       this.meetingName = ''
       this.meetingUsers = []
+      this.roomId = ''
+      this.socketId = ''
       this.isHostMeeting = false
+      this.isInitiateRoom = false
       this.isMicrophoneActive = false
+      this.isShareScreenActive = false
+      this.isShowChatRoom = false
+      this.isShowParticipants = false
       this.isVideoActive = false
     },
     setIsHostMeeting(value: boolean) {
@@ -81,6 +88,9 @@ export const useRoomStore = defineStore('room', {
     },
     setRoomId(value: string) {
       this.roomId = value
+    },
+    setSocketId(value: string) {
+      this.socketId = value
     },
     setVideo () {
       this.isVideoActive = !this.isVideoActive
