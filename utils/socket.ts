@@ -15,7 +15,7 @@ export const connectSocketIoServer = (socketServer: string) => {
   socket = io(socketServer)
 
   socket.on('connect', () => {
-    console.log('socket id', socket?.id)
+    roomStore.setSocketId(socket?.id as string)
   })
 
   socket?.volatile.on('room-id', (data: any) => {
