@@ -24,7 +24,7 @@ const initiateRoom = async () => {
     meetingId: meetingStore.roomId,
     meetingName: meetingStore.meetingName,
     isHostMeeting: meetingStore.isHostMeeting,
-  })
+  }, meetingStore.socketId)
 
   meetingStore.setIsInitiateRoom(false)
   meetingStore.setMicrophone()
