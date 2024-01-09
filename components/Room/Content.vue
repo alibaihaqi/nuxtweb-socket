@@ -11,13 +11,20 @@
     </section>
 
     <section class="flex flex-col">
-      <Participants v-if="roomStore.isShowParticipants" />
-      <ChatRoom v-if="roomStore.isShowChatRoom" />
+      <Participants
+        v-if="roomStore.isShowParticipants"
+        :class="isOpenContentChatParticipants ? 'max-h-[50%]': 'max-h-full'"
+      />
+      <ChatRoom
+        v-if="roomStore.isShowChatRoom"
+        :class="isOpenContentChatParticipants ? 'max-h-[50%]': 'max-h-full'"
+      />
     </section>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
 import ChatRoom from '@/components/Room/ChatRoom.vue'
 import Participants from '@/components/Room/Participants.vue'
 
@@ -28,6 +35,10 @@ const roomStore = useRoomStore()
 const onClickCopyRoomId = async () => {
   await navigator.clipboard.writeText(roomStore.roomId)
 }
+
+const isOpenContentChatParticipants = computed(() => {
+  return roomStore.isShowParticipants && roomStore.isShowChatRoom
+})
 </script>
 
 <style>
