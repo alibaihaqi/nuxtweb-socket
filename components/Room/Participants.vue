@@ -1,17 +1,9 @@
 <template>
   <div class="hidden sm:inline-flex sm:w-52 md:w-80 flex flex-col flex-1 bg-gray-700">
-    <section class="flex items-center py-2 px-4">
-      <p class="flex-1 text-gray-100 text-sm text-center">
-        Participants ({{ roomStore.meetingUsers.length }})
-      </p>
-
-      <button
-        class="py-1 px-4 bg-red-600 text-xs rounded-md"
-        @click="roomStore.setIsShowParticipants"
-      >
-        Close
-      </button>
-    </section>
+    <InfoHeader
+      :title="`Participants (${roomStore.meetingUsers.length })`"
+      :btn-action="roomStore.setIsShowParticipants"
+    />
 
     <section class="flex-1 border-2 border-blue-800 p-2">
       <div
@@ -28,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import InfoHeader from '@/components/Room/InfoHeader.vue'
 import { useRoomStore } from '@/stores/room'
 
 const roomStore = useRoomStore()
