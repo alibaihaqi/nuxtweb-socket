@@ -43,7 +43,7 @@
 
       <div class="flex items-center">
         <input
-          v-model="meetingConfig.audioToConnect"
+          v-model="meetingConfig.isConnectOnlyAudio"
           id="audio-checkbox"
           :class="`
             w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
