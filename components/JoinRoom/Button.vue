@@ -44,7 +44,7 @@ const router = useRouter();
 const onSubmitButtonHandler = async () => {
   try {
     if (!props.isHostMeeting) {
-      const { data, pending, error } = await useFetch(`${config.public.apiDomain}/rtc/room/${meetingConfig.value.meetingId}`)
+      const { data } = await useFetch(`${config.public.apiDomain}/rtc/room/${meetingConfig.value.meetingId}`)
       const result = data.value as any
 
       if (!result.success) {

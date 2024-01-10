@@ -13,10 +13,10 @@
         {{ getAuthorMessage(message) }}
       </p>
       <div
-        class="px-2 py-1 rounded-md max-w-[60%]"
+        class="p-2 rounded-md max-w-[60%]"
         :class="isAuthorSocketId(message) ? 'bg-blue-500' : 'bg-blue-400'"
       >
-        <p class="text-sm text-gray-100">
+        <p class="text-sm text-gray-100 break-all">
           {{ message.content }}
         </p>
       </div>
