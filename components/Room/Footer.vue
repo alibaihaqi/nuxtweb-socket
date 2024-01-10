@@ -8,6 +8,7 @@
       />
 
       <ActionButton
+        v-if="!roomStore.isConnectOnlyAudio"
         :isActive="roomStore.isVideoActive"
         :sources="VIDEO_ICON_SETS"
         @onClickHandler="onClickHandler('setVideo')"
