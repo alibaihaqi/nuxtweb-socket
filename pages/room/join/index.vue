@@ -76,7 +76,7 @@ import CommonLayout from '@/components/Layout/CommonLayout.vue'
 import { connectSocketIoServer } from '@/utils/socket'
 
 const runtimeConfig = useRuntimeConfig()
-const SOCKET_SERVER = runtimeConfig.public.socketServer
+const SOCKET_DOMAIN = runtimeConfig.public.socketDomain
 
 const meetingConfig = useMeetingConfig()
 const route = useRoute()
@@ -92,7 +92,7 @@ const isButtonDisabled = computed(() => {
 })
 
 onMounted(() => {
-  connectSocketIoServer(SOCKET_SERVER as string)
+  connectSocketIoServer(SOCKET_DOMAIN as string)
 })
 </script>
 

@@ -10,9 +10,9 @@ import {
 
 let socket: Socket | null = null
 
-export const connectSocketIoServer = (socketServer: string) => {
+export const connectSocketIoServer = (socketDomain: string) => {
   const roomStore = useRoomStore()
-  socket = io(socketServer)
+  socket = io(socketDomain)
 
   socket.on('connect', () => {
     roomStore.setSocketId(socket?.id as string)

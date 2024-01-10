@@ -17,7 +17,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      socketServer: '',
+      socketDomain: '',
+      apiDomain: '',
     }
   },
 })
