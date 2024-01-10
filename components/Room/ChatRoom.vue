@@ -10,18 +10,14 @@
       :author-socket-id="roomStore.socketId"
     />
 
-    <section class="bg-gray-600 p-2 rounded">
-      <textarea
-        class="w-full px-2 py-1 border rounded-md text-gray-800"
-
-      />
-    </section>
+    <ChatNewMessage />
   </div>
 </template>
 
 <script lang="ts" setup>
 import InfoHeader from '@/components/Room/InfoHeader.vue'
 import ChatMessages from '@/components/Room/ChatMessages.vue'
+import ChatNewMessage from '@/components/Room/ChatNewMessage.vue'
 import { useRoomStore } from '@/stores/room'
 
 const roomStore = useRoomStore()
