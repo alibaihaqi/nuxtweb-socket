@@ -10,7 +10,7 @@ export interface ISetMeetingConfig {
 }
 
 export interface IMeetingConfig {
-  audioToConnect: boolean
+  isConnectOnlyAudio: boolean
   meetingId: string
   meetingName: string
   isHostMeeting?: boolean
@@ -33,10 +33,17 @@ export interface IUser {
   socketId: string;
 }
 
+export interface IChatMessage {
+  socketId: string;
+  name: string;
+  content: string;
+}
+
 export interface IRoomState {
   displayStream: MediaStream | null;
   meetingName: string;
   meetingUsers: IUser[];
+  messages: IChatMessage[];
   roomId: string;
   socketId: string;
   isHostMeeting: boolean;
