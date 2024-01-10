@@ -1,7 +1,9 @@
 // @ts-ignore
 import Peer from 'simple-peer/simplepeer.min.js'
 import type { SimplePeer } from 'simple-peer'
-import type { IGetDisplayMedia, IMeetingConfig } from '@/interfaces/room/room'
+
+import type { IChatMessage, IGetDisplayMedia, IMeetingConfig } from '@/interfaces/room/room'
+import { useRoomStore } from '@/stores/room'
 import { createNewRoom, joinRoom, signalPeerData } from '@/utils/socket'
 
 const defaultDisplayMediaConstraints = {
@@ -9,9 +11,11 @@ const defaultDisplayMediaConstraints = {
   video: true,
 }
 
-const defaultMediaConstraints = {
-  audio: true,
-  video: true,
+const getMediaConstraints = (connectOnlyAudio: boolean): MediaStreamConstraints => {
+  return {
+    audio: true,
+    video: !connectOnlyAudio,
+  }
 }
 
 let localStream: null | MediaStream = null
@@ -19,7 +23,8 @@ let streams: any = []
 
 export const getLocalPreviewAndRoomConnection = async (config: IMeetingConfig, socketId: string) => {
   try {
-    localStream = await navigator.mediaDevices.getUserMedia(defaultMediaConstraints)
+    const mediaConstraints = getMediaConstraints(config.isConnectOnlyAudio)
+    localStream = await navigator.mediaDevices.getUserMedia(mediaConstraints)
 
     showVideoStream(localStream, socketId)
 
@@ -98,6 +103,11 @@ export const prepareNewPeerConnection = (connectedUserSocketId: string, isInitia
   peers[connectedUserSocketId].on('stream', (stream: any) => {
     addStream(stream, connectedUserSocketId)
     streams = [...streams, stream]
+  })
+
+  peers[connectedUserSocketId].on('data', (data: string) => {
+    const messageData = JSON.parse(data)
+    concatNewMessage(messageData)
   })
 }
 
@@ -187,4 +197,18 @@ const switchVideoTracks = (stream: MediaStream | null) => {
       }
     }
   }
-};
+}
+
+export const concatNewMessage = (message: IChatMessage) => {
+  const roomStore = useRoomStore()
+  roomStore.setMessages([...roomStore.messages, message])
+}
+
+export const sendMessageUsingDataChannel = (message: IChatMessage) => {
+  concatNewMessage(message)
+
+  const stringifyMessage = JSON.stringify(message)
+  for (let socketId in peers) {
+    peers[socketId].send(stringifyMessage)
+  }
+}
