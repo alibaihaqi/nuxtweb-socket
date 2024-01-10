@@ -15,6 +15,7 @@ export const useRoomStore = defineStore('room', {
     messages: [],
     roomId: '',
     socketId: '',
+    isConnectOnlyAudio: false,
     isHostMeeting: false,
     isInitiateRoom: false,
     isMicrophoneActive: false,
@@ -31,6 +32,7 @@ export const useRoomStore = defineStore('room', {
       this.messages = []
       this.roomId = ''
       this.socketId = ''
+      this.isConnectOnlyAudio = false
       this.isHostMeeting = false
       this.isInitiateRoom = false
       this.isMicrophoneActive = false
@@ -38,6 +40,9 @@ export const useRoomStore = defineStore('room', {
       this.isShowChatRoom = false
       this.isShowParticipants = false
       this.isVideoActive = false
+    },
+    setIsConnectOnlyAudio(value: boolean) {
+      this.isConnectOnlyAudio = value
     },
     setIsHostMeeting(value: boolean) {
       this.isHostMeeting = value
@@ -72,10 +77,11 @@ export const useRoomStore = defineStore('room', {
     setIsShowParticipants () {
       this.isShowParticipants = !this.isShowParticipants
     },
-    setMeetingConfig({ isHostMeeting, meetingName, meetingId }: ISetMeetingConfig) {
+    setMeetingConfig({ isHostMeeting, meetingName, meetingId, isConnectOnlyAudio }: ISetMeetingConfig) {
       this.setIsHostMeeting(isHostMeeting)
       this.setMeetingName(meetingName)
       this.setRoomId(meetingId as string)
+      this.setIsConnectOnlyAudio(isConnectOnlyAudio)
     },
     setMeetingName(value: string) {
       this.meetingName = value

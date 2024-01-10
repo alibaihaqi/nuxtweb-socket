@@ -46,10 +46,12 @@ const onSubmitButtonHandler = async () => {
       isHostMeeting: props.isHostMeeting,
       meetingName: meetingConfig.value.meetingName,
       meetingId: meetingConfig.value.meetingId,
+      isConnectOnlyAudio: meetingConfig.value.isConnectOnlyAudio,
     })
 
     meetingConfig.value.meetingId = ''
     meetingConfig.value.meetingName = ''
+    meetingConfig.value.isConnectOnlyAudio = false
   
     await router.replace('/room')  
   } catch (error) {

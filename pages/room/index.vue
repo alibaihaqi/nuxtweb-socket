@@ -20,7 +20,7 @@ const initiateRoom = async () => {
   meetingStore.setIsInitiateRoom(true)
 
   await getLocalPreviewAndRoomConnection({
-    audioToConnect: meetingStore.isMicrophoneActive,
+    isConnectOnlyAudio: meetingStore.isConnectOnlyAudio,
     meetingId: meetingStore.roomId,
     meetingName: meetingStore.meetingName,
     isHostMeeting: meetingStore.isHostMeeting,
@@ -28,6 +28,6 @@ const initiateRoom = async () => {
 
   meetingStore.setIsInitiateRoom(false)
   meetingStore.setMicrophone()
-  meetingStore.setVideo()
+  if (!meetingStore.isConnectOnlyAudio) meetingStore.setVideo()
 }
 </script>
