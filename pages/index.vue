@@ -6,7 +6,7 @@
       `"
     >
       <h1 class="text-3xl font-bold text-blue-500">
-        WebRTC Alibaihaqi
+        WebRTC alibaihaqi
       </h1>
 
       <div class="flex flex-col gap-4 w-full">
