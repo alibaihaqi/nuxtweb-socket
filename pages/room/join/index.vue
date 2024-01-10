@@ -51,12 +51,13 @@
             focus:ring-1 dark:bg-gray-700 dark:border-gray-600
           `"
           type="checkbox"
+          disabled
         >
         <label
           for="audio-checkbox"
           class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-700"
         >
-          Connect only audio
+          Connect only audio <span class="text-xs text-red-600">(Under Maintenance)</span>
         </label>
       </div>
 
