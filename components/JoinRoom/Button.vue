@@ -38,10 +38,22 @@ const props = defineProps<{
 const meetingConfig = useMeetingConfig()
 const meetingStore = useRoomStore()
 
+const config = useRuntimeConfig()
 const router = useRouter();
 
 const onSubmitButtonHandler = async () => {
   try {
+    if (!props.isHostMeeting) {
+      const { data, pending, error } = await useFetch(`${config.public.apiDomain}/rtc/room/${meetingConfig.value.meetingId}`)
+      const result = data.value as any
+
+      if (!result.success) {
+        // TODO: create modal  
+        alert(result.message)
+        return
+      }
+    }
+
     meetingStore.setMeetingConfig({
       isHostMeeting: props.isHostMeeting,
       meetingName: meetingConfig.value.meetingName,

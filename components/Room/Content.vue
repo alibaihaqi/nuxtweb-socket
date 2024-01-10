@@ -47,7 +47,7 @@ const isOpenContentChatParticipants = computed(() => {
 }
 
 .video_container_style {
-  @apply flex flex-1;
+  @apply flex flex-1 justify-center;
 }
 
 </style>
