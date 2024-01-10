@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { IRoomState, ISetMeetingConfig } from '@/interfaces/room/room'
+import type { IChatMessage, IRoomState, ISetMeetingConfig } from '@/interfaces/room/room'
 import {
   getDisplayMediaStream,
   micToggle,
@@ -12,6 +12,7 @@ export const useRoomStore = defineStore('room', {
     displayStream: null,
     meetingName: '',
     meetingUsers: [],
+    messages: [],
     roomId: '',
     socketId: '',
     isHostMeeting: false,
@@ -27,6 +28,7 @@ export const useRoomStore = defineStore('room', {
       this.displayStream = null
       this.meetingName = ''
       this.meetingUsers = []
+      this.messages = []
       this.roomId = ''
       this.socketId = ''
       this.isHostMeeting = false
@@ -85,6 +87,9 @@ export const useRoomStore = defineStore('room', {
       this.isMicrophoneActive = !this.isMicrophoneActive
 
       micToggle(this.isMicrophoneActive)
+    },
+    setMessages(messages: IChatMessage[]) {
+      this.messages = messages
     },
     setRoomId(value: string) {
       this.roomId = value
