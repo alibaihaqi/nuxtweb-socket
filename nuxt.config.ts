@@ -22,9 +22,11 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
+    flagsmithConfig: '',
+
     public: {
-      socketDomain: '',
       apiDomain: '',
+      socketDomain: '',
     }
   },
 })
