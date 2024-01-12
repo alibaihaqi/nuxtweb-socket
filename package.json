@@ -20,6 +20,7 @@
   "dependencies": {
     "@nuxt/image": "^1.1.0",
     "@pinia/nuxt": "^0.5.1",
+    "flagsmith-nodejs": "^3.2.0",
     "simple-peer": "^9.11.1",
     "socket.io-client": "^4.7.2"
   }
