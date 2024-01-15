@@ -56,7 +56,7 @@ export const createNewRoom = (meetingConfig: IMeetingConfig) => {
     isHostMeeting: meetingConfig.isHostMeeting,
   }
 
-  socket?.volatile.emit('create-new-room', data)
+  socket?.volatile.emit('create-room', data)
 }
 
 export const joinRoom = (meetingConfig: IMeetingConfig) => {
