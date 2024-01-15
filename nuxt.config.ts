@@ -21,11 +21,16 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
 
-  runtimeConfig: {
-    flagsmithConfig: '',
+  plugins: [
+    '~/plugins/flagsmith.client',
+  ],
 
+  runtimeConfig: {
+    
     public: {
       apiDomain: '',
+      flagsmithConfig: '',
+      flagsmithEnableAnalytics: '',
       socketDomain: '',
     }
   },
