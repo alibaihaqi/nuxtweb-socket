@@ -6,7 +6,7 @@
       `"
     >
       <h1 class="text-3xl font-bold text-blue-500">
-        WebRTC alibaihaqi
+        {{ title }}
       </h1>
 
       <div class="flex flex-col gap-4 w-full">
@@ -38,8 +38,25 @@
 <script lang="ts" setup>
 import HomeButton from '@/components/Home/HomeButton.vue'
 import CommonLayout from '@/components/Layout/CommonLayout.vue'
+
+import { useFlagsmithFlag } from '@/composables/flagsmith'
 import { useRoomStore } from '@/stores/room'
 
 const roomStore = useRoomStore()
-</script>
 
+let title = ref('WebRTC Alibaihaqi')
+
+
+onBeforeMount(() => {
+  getTitle()
+})
+
+const getTitle = async () => {
+  const { $flagsmith } = useNuxtApp()
+  const webRtcTitle = await useFlagsmithFlag($flagsmith, 'webrtc_title')
+
+  if (webRtcTitle) {
+    title.value = webRtcTitle as string
+  }
+}
+</script>
